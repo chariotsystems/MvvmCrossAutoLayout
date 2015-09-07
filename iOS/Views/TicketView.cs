@@ -74,13 +74,15 @@ namespace AutoLayout
 		{
 			Customer.AddLabel ("CustomerLabel", "CUSTOMER", UIColor.LightGray/*TelstraGreyL6*/, TowLabelTextSize);
 			var name = Customer.AddLabel ("CustomerName", "Peter Parker", UIColor.Black, TowDataTextSize);
-			Customer.AddImage ("Customer_telstra_img", "ic_telstra_logo.png");
+			var telstra = Customer.AddImage ("Customer_telstra_img", "ic_telstra_logo.png");
 			Customer.AddConstraint ("V:|-18-[CustomerLabel]-7-[CustomerName]|");
 			Customer.AddConstraint ("V:|-20-[Customer_telstra_img(28)]-(>=8)-|");
 			Customer.AddConstraint ("H:|-19-[CustomerLabel]-(>=8)-|");
 			Customer.AddConstraint ("H:|-19-[CustomerName]-(>=8)-|");
 			Customer.AddConstraint ("H:|-(>=8)-[Customer_telstra_img(28)]-27-|");
 			Set.Bind (name).To (vm => vm.Hello);
+			Set.Bind (telstra).For ("Visibility").To (vm => vm.Telstra).WithConversion ("Visibility");
+			
 		}
 
 		void SetContact (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView SiteContact)
@@ -104,11 +106,14 @@ namespace AutoLayout
 			var PremisesTabBox = PremisesBorder.AddContainer ("PremisesTabBox", UIColor.White);
 			var ConnectionPillarTabBox = PremisesBorder.AddContainer ("ConnectionPillarTabBox", UIColor.LightGray);
 			var ExchangeTabBox = PremisesBorder.AddContainer ("ExchangeTabBox", UIColor.LightGray);
-			PremisesTabBox.AddLabelCenteredXY ("PremisesTab", "PREMISES", UIColor.Black, 15);
+			var PremisesLabel = PremisesTabBox.AddLabelCenteredXY ("PremisesTab", "PREMISES", UIColor.Black, 15);
 			ConnectionPillarTabBox.AddLabelCenteredXY ("ConnectionPillarTab", "P74", UIColor.Blue, 15);
 			ExchangeTabBox.AddLabelCenteredXY ("ExchangeTab", "PARR", UIColor.Blue, 15);
 
 			Set.Bind (PremisesTabBox).For ("Tap").To (vm => vm.TestCommand).WithConversion ("CommandParameter", "alex");
+			// https://github.com/MvvmCross/MvvmCross/wiki/Value-Converters
+			Set.Bind (PremisesTabBox).For (field => field.BackgroundColor).To (vm => vm.PremisesTabBackgroundColor).WithConversion ("RGBA");
+			Set.Bind (PremisesLabel).For (field => field.TextColor).To (vm => vm.PremisesTabTextColor).WithConversion ("RGBA");
 			SetPremises (Set, PremisesBorder);
 		}
 
