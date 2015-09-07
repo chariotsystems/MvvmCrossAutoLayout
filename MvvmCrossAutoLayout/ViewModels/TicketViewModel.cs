@@ -58,6 +58,8 @@ namespace MvvmCrossAutoLayout.ViewModels
 
 		public void Test (string commandParameter)
 		{
+			// Don't call the individual set methods as the action of firing RaisePropertyChanged for each one
+			// causes some kind of race condition;
 			_hello = commandParameter;
 			_Telstra = !Telstra;
 			_PremisesTabBackgroundColor = "#FF0000";

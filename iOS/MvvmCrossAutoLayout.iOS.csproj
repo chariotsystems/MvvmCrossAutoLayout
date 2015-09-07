@@ -159,10 +159,13 @@
     <Compile Include="ViewController.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
+    <Compile Include="Notifications\LocalNotificationHelper.cs" />
+    <Compile Include="Notifications\SoundAndVibration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="AutoLayout\" />
+    <Folder Include="Notifications\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_directions.png" />

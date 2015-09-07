@@ -7,6 +7,7 @@ using Cirrious.MvvmCross.Touch.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using MvvmCrossAutoLayout.ViewModels;
 using ObjCRuntime;
+using MvvmCrossAutoLayout.iOS;
 
 namespace AutoLayout
 {
@@ -14,18 +15,11 @@ namespace AutoLayout
 	[Register ("TicketView")]
 	public class TicketView : MvxViewController
 	{
-
-
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			View = BuildView ();
-
-//			// ios7 layout
-//			if (RespondsToSelector(new Selector("edgesForExtendedLayout")))
-//			{
-//				EdgesForExtendedLayout = UIRectEdge.None;
-//			}
+			LocalNotificationHelper.SendLocalNotification ();
 		}
 
 		public string TelstraGreyL6 = "#9B9B9B";
