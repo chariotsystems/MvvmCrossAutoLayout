@@ -161,6 +161,9 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Notifications\LocalNotificationHelper.cs" />
     <Compile Include="Notifications\SoundAndVibration.cs" />
+    <Compile Include="Views\ContactView.cs" />
+    <Compile Include="AutoLayout\ColorConversion.cs" />
+    <Compile Include="AutoLayout\ListView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -172,5 +175,6 @@
     <BundleResource Include="Resources\ic_logo.png" />
     <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\ic_telstra_logo.png" />
+    <BundleResource Include="Resources\Alex.jpg" />
   </ItemGroup>
 </Project>

@@ -30,36 +30,36 @@ namespace FSD.iOS
 			//https://developer.xamarin.com/guides/cross-platform/application_fundamentals/notifications/ios/local_notifications_in_ios_walkthrough/
 			//https://github.com/xamarin/monotouch-samples/blob/master/Notifications/AppDelegate.cs
 			// check for a notification
-			if (options != null) {
-				// check for a local notification
-				if (options.ContainsKey (UIApplication.LaunchOptionsLocalNotificationKey)) {
-					var localNotification = options [UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
-					if (localNotification != null) {
-						ReceivedLocalNotification (null, localNotification);
-					}
-				}
-				// check for a remote notification
-				if (options.ContainsKey (UIApplication.LaunchOptionsRemoteNotificationKey)) {
-
-					NSDictionary remoteNotification = options [UIApplication.LaunchOptionsRemoteNotificationKey] as NSDictionary;
-					if (remoteNotification != null) {
-						ReceivedRemoteNotification (null, remoteNotification);
-					}
-				}
-			}
-
-			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
-				var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (
-					                           UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
-				                           );
-
-				app.RegisterUserNotificationSettings (notificationSettings);
-				app.RegisterForRemoteNotifications ();
-
-			} else {
-				// We don't want to support iOS7 and below as they don't have AutoLayout.
-				// throw new NotSupportedException("Only iOS8 and above are supported");
-			}
+//			if (options != null) {
+//				// check for a local notification
+//				if (options.ContainsKey (UIApplication.LaunchOptionsLocalNotificationKey)) {
+//					var localNotification = options [UIApplication.LaunchOptionsLocalNotificationKey] as UILocalNotification;
+//					if (localNotification != null) {
+//						ReceivedLocalNotification (null, localNotification);
+//					}
+//				}
+//				// check for a remote notification
+//				if (options.ContainsKey (UIApplication.LaunchOptionsRemoteNotificationKey)) {
+//
+//					NSDictionary remoteNotification = options [UIApplication.LaunchOptionsRemoteNotificationKey] as NSDictionary;
+//					if (remoteNotification != null) {
+//						ReceivedRemoteNotification (null, remoteNotification);
+//					}
+//				}
+//			}
+//
+//			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+//				var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (
+//					                           UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+//				                           );
+//
+//				app.RegisterUserNotificationSettings (notificationSettings);
+//				app.RegisterForRemoteNotifications ();
+//
+//			} else {
+//				// We don't want to support iOS7 and below as they don't have AutoLayout.
+//				// throw new NotSupportedException("Only iOS8 and above are supported");
+//			}
 
 			return true;
 		}
@@ -182,34 +182,5 @@ namespace FSD.iOS
 
 	}
 
-
-	//
-	//	[Register ("AppDelegate")]
-	//	public partial class AppDelegate : UIApplicationDelegate
-	//	{
-	//		// class-level declarations
-	//		UIWindow window;
-	//
-	//		//
-	//		// This method is invoked when the application has loaded and is ready to run. In this
-	//		// method you should instantiate the window, load the UI into it and then make the window
-	//		// visible.
-	//		//
-	//		// You have 17 seconds to return from this method, or iOS will terminate your application.
-	//		//
-	//		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-	//		{
-	//			// create a new window instance based on the screen size
-	//			window = new UIWindow (UIScreen.MainScreen.Bounds);
-	//
-	//			// If you have defined a root view controller, set it here:
-	//			window.RootViewController = new SplashView();
-	//
-	//			// make the window visible
-	//			window.MakeKeyAndVisible ();
-	//
-	//			return true;
-	//		}
-	//	}
 }
 

@@ -8,6 +8,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using MvvmCrossAutoLayout.ViewModels;
 using ObjCRuntime;
 using MvvmCrossAutoLayout.iOS;
+using CoreGraphics;
 
 namespace AutoLayout
 {
@@ -18,6 +19,7 @@ namespace AutoLayout
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			NavigationController.NavigationBarHidden = true;
 			View = BuildView ();
 			LocalNotificationHelper.SendLocalNotification ();
 		}
@@ -30,17 +32,11 @@ namespace AutoLayout
 		{
 			var Set = this.CreateBindingSet<TicketView, TicketViewModel> ();
 			var Root = ContentView.CreateRoot ("Root", UIColor.DarkGray);
-			NavigationController.NavigationBarHidden = true;
+			var ScrollView = Root.AddScrollView ("ScrollView", UIColor.DarkGray);
 
-			// Scroll View uses all of main view width
-//			var scrollView = mainView.AddScrollView("scrollView", TelstraGreyL6, constraints);
-//			mainView.AddConstraint("H:|[scrollView]|");
-//			var scrollView = mainView;
-			//TODO: wrap uiscrollview like contentview so that it can have its own AddConstraints method
-
-			var ContactBorder = Root.AddContainer ("ContactBorder", UIColor.White);
-			var PremisesBorder = Root.AddContainer ("PremisesBorder", UIColor.White);
-			ContactBorder.AddParentConstraint ("V:|-16-[ContactBorder]-4-[PremisesBorder]-(>=4)-|");
+			var ContactBorder = ScrollView.AddContainer ("ContactBorder", UIColor.White);
+			var PremisesBorder = ScrollView.AddContainer ("PremisesBorder", UIColor.White);
+			ContactBorder.AddParentConstraint ("V:|-16-[ContactBorder]-500-[PremisesBorder]-(>=4)-|");
 			ContactBorder.AddParentConstraint ("H:|-4-[ContactBorder]-4-|");
 			PremisesBorder.AddParentConstraint ("H:|-4-[PremisesBorder]-4-|");
 
