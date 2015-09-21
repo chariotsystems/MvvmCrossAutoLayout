@@ -7,44 +7,55 @@ using CoreGraphics;
 using MaterialControls;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using MvvmCrossAutoLayout.iOS;
+using AutoLayout.iOS.Helpers;
 
 namespace AutoLayout
 {
-	public class ContentView : UIView
+	public class AutoLayoutContentView : UIView
 	{
 
 		public string Name { get; set; }
 
-		public Constraints OurConstraints { get; set; }
+		public AutoLayoutConstraints OurConstraints { get; set; }
 
-		public ContentView Parent;
+		public AutoLayoutContentView Parent;
 
-		private ContentView (string name, UIColor color)
+		private AutoLayoutContentView (string name, UIColor color)
 		{
-			OurConstraints = new Constraints ();
+			OurConstraints = new AutoLayoutConstraints ();
 			base.BackgroundColor = color;
 			Name = name;
 		}
 
 
-		public static ContentView CreateRoot (string name, UIColor color)
+		public static AutoLayoutContentView CreateRoot (string name, UIColor color)
 		{
-			ContentView root = new ContentView (name, null, color);
+			AutoLayoutContentView root = new AutoLayoutContentView (name, null, color);
 			root.TranslatesAutoresizingMaskIntoConstraints = true;
+			return root;
+		}
+
+		public static AutoLayoutContentView CreateListContentRoot (string name, UIColor color, UIView view)
+		{
+			AutoLayoutContentView root = new AutoLayoutContentView (name, null, color);
+			root.TranslatesAutoresizingMaskIntoConstraints = true;
+			int width = (int)view.Bounds.Size.Width;
+			int height = (int)view.Bounds.Size.Height;
+			root.Frame = new RectangleF (0, 0, width, height);
 			return root;
 		}
 
 
 
-		private ContentView (string name, ContentView parent, UIColor color, float x = 10, float y = 10, float width = 10, float height = 10)
+		private AutoLayoutContentView (string name, AutoLayoutContentView parent, UIColor color, float x = 10, float y = 10, float width = 10, float height = 10)
 		{
 			Init (name, parent, color, x, y, width, height);	
 		}
 
 
-		private void Init (string name, ContentView parent, UIColor color, float x = 10, float y = 10, float width = 10, float height = 10)
+		private void Init (string name, AutoLayoutContentView parent, UIColor color, float x = 10, float y = 10, float width = 10, float height = 10)
 		{
-			OurConstraints = new Constraints ();
+			OurConstraints = new AutoLayoutConstraints ();
 			Parent = parent;
 			base.BackgroundColor = color;
 			Name = name;
@@ -64,16 +75,27 @@ namespace AutoLayout
 			OurConstraints.Views.Add (this);
 		}
 
-		public ContentView AddContainerCenteredX (string name, UIColor color)
+		private UILabel DebugLabel (string name)
 		{
-			ContentView view = AddContainer (name, color);
+			var label = new UILabel ();
+			label.Text = name;
+			label.TextColor = UIColor.Black;
+			label.Font = UIFont.FromName ("Helvetica-Bold", 12);
+			label.Frame = new RectangleF (10, 10, 200, 100);
+			return label;
+		}
+
+
+		public AutoLayoutContentView AddContainerCenteredX (string name, UIColor color)
+		{
+			AutoLayoutContentView view = AddContainer (name, color);
 			AddConstraintToCenterX (view);
 			return view;
 		}
 
-		public ContentView AddContainer (string name, UIColor color)
+		public AutoLayoutContentView AddContainer (string name, UIColor color)
 		{
-			ContentView content = new ContentView (name, this, color);
+			AutoLayoutContentView content = new AutoLayoutContentView (name, this, color);
 			return content;
 		}
 
@@ -83,7 +105,7 @@ namespace AutoLayout
 			this.AddConstraints (NSLayoutConstraint.FromVisualFormat (rule, 0, new NSDictionary (), OurConstraints.Dictionary ()));
 		}
 
-		public void AddConstraint (string rule, UIView view, Constraints constraints)
+		public void AddConstraint (string rule, UIView view, AutoLayoutConstraints constraints)
 		{
 			view.AddConstraints (NSLayoutConstraint.FromVisualFormat (rule, 0, new NSDictionary (), constraints.Dictionary ()));
 		}
@@ -119,16 +141,40 @@ namespace AutoLayout
 			this.AddConstraints (new NSLayoutConstraint[] { NSLayoutConstraint.Create (view, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, superView, NSLayoutAttribute.CenterX, 1, 0) });
 		}
 
-
-		public void AddParentConstraint (string rule)
+		public void AddConstraintToCenterY (UIView view)
 		{
-			Parent.AddConstraints (NSLayoutConstraint.FromVisualFormat (rule, 0, new NSDictionary (), Parent.OurConstraints.Dictionary ()));
+			AddConstraintToCenterY (this, view);
 		}
+
+		public void AddConstraintToCenterY (UIView superView, UIView view)
+		{
+			this.AddConstraints (new NSLayoutConstraint[] { NSLayoutConstraint.Create (view, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, superView, NSLayoutAttribute.CenterX, 1, 0) });
+		}
+
+		//		public void AddParentConstraint (string rule)
+		//		{
+		//			Parent.AddConstraints (NSLayoutConstraint.FromVisualFormat (rule, 0, new NSDictionary (), Parent.OurConstraints.Dictionary ()));
+		//		}
+
 
 		public UIImageView AddImageCenteredX (string name, string imageFileName)
 		{
 			var imageView = AddImage (name, imageFileName);
 			AddConstraintToCenterX (this, imageView);
+			return imageView;
+		}
+
+		public UIImageView AddImageCenteredY (string name, string imageFileName)
+		{
+			var imageView = AddImage (name, imageFileName);
+			AddConstraintToCenterY (this, imageView);
+			return imageView;
+		}
+
+		public UIImageView AddImageCenteredXY (string name, string imageFileName)
+		{
+			var imageView = AddImage (name, imageFileName);
+			AddConstraintToCenterXY (this, imageView);
 			return imageView;
 		}
 
@@ -251,12 +297,12 @@ namespace AutoLayout
 
 		//https://developer.apple.com/library/ios/technotes/tn2154/_index.html
 		//Pure approach
-		public ContentView AddScrollView (string name, UIColor color)
+		public AutoLayoutContentView AddScrollView (string name, UIColor color)
 		{
 			var scrollView = new UIScrollView ();
 			this.Add (scrollView);
 			scrollView.Frame = new RectangleF (10, 10, 10, 10);// TODO: Is this still required?
-			ContentView contentView = new ContentView (name, color);
+			AutoLayoutContentView contentView = new AutoLayoutContentView (name, color);
 			contentView.Frame = new RectangleF (10, 10, 10, 10);// TODO: Is this still required?
 			scrollView.Add (contentView);
 
@@ -271,7 +317,7 @@ namespace AutoLayout
 			AddConstraint ("H:|[PrivateScrollView(" + width + ")]|");
 			AddConstraint ("V:|[PrivateScrollView(>=" + height + ")]|");
 			//scrollView.Add (DebugLabel ("scrollView"));
-			Constraints ScrollViewConstraints = new AutoLayout.Constraints ();
+			AutoLayoutConstraints ScrollViewConstraints = new AutoLayout.AutoLayoutConstraints ();
 			ScrollViewConstraints.ViewNames.Add (new NSString ("PrivateContentView"));
 			ScrollViewConstraints.Views.Add (contentView);
 			AddConstraint ("H:|[PrivateContentView(" + width + ")]|", scrollView, ScrollViewConstraints);
@@ -284,14 +330,19 @@ namespace AutoLayout
 			return contentView;
 		}
 
-		private UILabel DebugLabel (string name)
+		public UITableView AddTableView (string name)
 		{
-			var label = new UILabel ();
-			label.Text = name;
-			label.TextColor = UIColor.Black;
-			label.Font = UIFont.FromName ("Helvetica-Bold", 12);
-			label.Frame = new RectangleF (10, 10, 200, 100);
-			return label;
+			var tableView = new UITableView ();
+			this.AddSubview (tableView);
+			tableView.Frame = new RectangleF ((float)this.Bounds.X, (float)this.Bounds.Y, (float)this.Bounds.Size.Width, (float)this.Bounds.Size.Height);
+
+			// Setup constraints
+			tableView.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (tableView);
+
+			return tableView;
+
 		}
 
 

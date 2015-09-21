@@ -16,7 +16,7 @@ namespace AutoLayout
 
 		private UIView BuildView(){
 
-			ContentView Root = ContentView.CreateRoot("Root", UIColor.Blue);
+			AutoLayoutContentView Root = AutoLayoutContentView.CreateRoot("Root", UIColor.Blue);
 			Root.AddVerticalGradient(UIColor.Blue, UIColor.White);
 			Root.AddImageCenteredX("TelstraLogo", "ic_logo.png");
 			Root.AddLabelCenteredX("ToolKit", "TOOLKIT", UIColor.White, 38);

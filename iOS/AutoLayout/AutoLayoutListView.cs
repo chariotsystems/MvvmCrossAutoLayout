@@ -7,7 +7,7 @@ using Foundation;
 namespace MvvmCrossAutoLayout.iOS
 {
 	// reuse kittens code here with acknowledgement
-	public class ListView //: UIListView
+	public class AutoLayoutListView //: UIListView
 	{
 		//		public string Name { get; set; }
 		//

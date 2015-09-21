@@ -64,24 +64,24 @@ namespace FSD.iOS
 			return true;
 		}
 
-		public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
-		{
-			// show an alert
-			UIAlertController okayAlertController = UIAlertController.Create (notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
-			okayAlertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
-			_window.RootViewController.PresentViewController (okayAlertController, true, null);
-
-			// reset our badge
-			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-		}
-
-		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
-		{
-			//This method gets called whenever the app is already running and receives a push notification
-			// YOU MUST HANDLE the notifications in this case.  Apple assumes if the app is running, it takes care of everything
-			// this includes setting the badge, playing a sound, etc.
-			processNotification (userInfo, false);
-		}
+		//		public override void ReceivedLocalNotification (UIApplication application, UILocalNotification notification)
+		//		{
+		//			// show an alert
+		//			UIAlertController okayAlertController = UIAlertController.Create (notification.AlertAction, notification.AlertBody, UIAlertControllerStyle.Alert);
+		//			okayAlertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
+		//			_window.RootViewController.PresentViewController (okayAlertController, true, null);
+		//
+		//			// reset our badge
+		//			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+		//		}
+		//
+		//		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
+		//		{
+		//			//This method gets called whenever the app is already running and receives a push notification
+		//			// YOU MUST HANDLE the notifications in this case.  Apple assumes if the app is running, it takes care of everything
+		//			// this includes setting the badge, playing a sound, etc.
+		//			processNotification (userInfo, false);
+		//		}
 
 		// https://roycornelissen.wordpress.com/2011/05/12/push-notifications-in-ios-with-monotouch/
 		void processNotification (NSDictionary options, bool fromFinishedLaunching)
@@ -150,25 +150,25 @@ namespace FSD.iOS
 		/// Note: the device token can change, so this needs to register with your server application everytime
 		/// this method is invoked, or at a minimum, cache the last token and check for a change.
 		/// </summary>
-		public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
-		{
-			// Get current device token
-			var DeviceToken = deviceToken.Description;
-			if (!string.IsNullOrWhiteSpace (DeviceToken)) {
-				DeviceToken = DeviceToken.Trim ('<').Trim ('>');
-			}
-
-			// Get previous device token
-			var oldDeviceToken = NSUserDefaults.StandardUserDefaults.StringForKey ("PushDeviceToken");
-
-			// Has the token changed?
-			if (string.IsNullOrEmpty (oldDeviceToken) || !oldDeviceToken.Equals (DeviceToken)) {
-				//TODO: Put your own logic here to notify your server that the device token has changed/been created!
-			}
-
-			// Save new device token - change to use our database.
-			NSUserDefaults.StandardUserDefaults.SetString (DeviceToken, "PushDeviceToken");
-		}
+		//		public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
+		//		{
+		//			// Get current device token
+		//			var DeviceToken = deviceToken.Description;
+		//			if (!string.IsNullOrWhiteSpace (DeviceToken)) {
+		//				DeviceToken = DeviceToken.Trim ('<').Trim ('>');
+		//			}
+		//
+		//			// Get previous device token
+		//			var oldDeviceToken = NSUserDefaults.StandardUserDefaults.StringForKey ("PushDeviceToken");
+		//
+		//			// Has the token changed?
+		//			if (string.IsNullOrEmpty (oldDeviceToken) || !oldDeviceToken.Equals (DeviceToken)) {
+		//				//TODO: Put your own logic here to notify your server that the device token has changed/been created!
+		//			}
+		//
+		//			// Save new device token - change to use our database.
+		//			NSUserDefaults.StandardUserDefaults.SetString (DeviceToken, "PushDeviceToken");
+		//		}
 
 		/// <summary>
 		/// Registering for push notifications can fail, for instance, if the device doesn't have network access.

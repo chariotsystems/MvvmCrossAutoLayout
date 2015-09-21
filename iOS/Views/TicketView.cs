@@ -21,7 +21,7 @@ namespace AutoLayout
 			base.ViewDidLoad ();
 			NavigationController.NavigationBarHidden = true;
 			View = BuildView ();
-			LocalNotificationHelper.SendLocalNotification ();
+//			LocalNotificationHelper.SendLocalNotification ();
 		}
 
 		public string TelstraGreyL6 = "#9B9B9B";
@@ -31,14 +31,14 @@ namespace AutoLayout
 		private UIView BuildView ()
 		{
 			var Set = this.CreateBindingSet<TicketView, TicketViewModel> ();
-			var Root = ContentView.CreateRoot ("Root", UIColor.DarkGray);
+			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray);
 			var ScrollView = Root.AddScrollView ("ScrollView", UIColor.DarkGray);
 
 			var ContactBorder = ScrollView.AddContainer ("ContactBorder", UIColor.White);
 			var PremisesBorder = ScrollView.AddContainer ("PremisesBorder", UIColor.White);
-			ContactBorder.AddParentConstraint ("V:|-16-[ContactBorder]-500-[PremisesBorder]-(>=4)-|");
-			ContactBorder.AddParentConstraint ("H:|-4-[ContactBorder]-4-|");
-			PremisesBorder.AddParentConstraint ("H:|-4-[PremisesBorder]-4-|");
+			ScrollView.AddConstraint ("V:|-16-[ContactBorder]-300-[PremisesBorder]-(>=4)-|");
+			ScrollView.AddConstraint ("H:|-4-[ContactBorder]-4-|");
+			ScrollView.AddConstraint ("H:|-4-[PremisesBorder]-4-|");
 
 			SetCustomerAndContact (Set, ContactBorder);
 
@@ -49,18 +49,18 @@ namespace AutoLayout
 			return Root;
 		}
 
-		void SetCustomerAndContact (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView ContactBorder)
+		void SetCustomerAndContact (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, AutoLayoutContentView ContactBorder)
 		{
 			var Customer = ContactBorder.AddContainer ("Customer", UIColor.White);
 			var SiteContact = ContactBorder.AddContainer ("SiteContact", UIColor.White);
-			Customer.AddParentConstraint ("V:|-[Customer]-25-[SiteContact]|");
-			Customer.AddParentConstraint ("H:|-[Customer]-(>=8)-|");
-			SiteContact.AddParentConstraint ("H:|-[SiteContact]-(>=8)-|");
+			ContactBorder.AddConstraint ("V:|-[Customer]-25-[SiteContact]|");
+			ContactBorder.AddConstraint ("H:|-[Customer]-(>=8)-|");
+			ContactBorder.AddConstraint ("H:|-[SiteContact]-(>=8)-|");
 			SetCustomer (Set, Customer);
 			SetContact (Set, SiteContact);
 		}
 
-		void SetCustomer (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView Customer)
+		void SetCustomer (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, AutoLayoutContentView Customer)
 		{
 			Customer.AddLabel ("CustomerLabel", "CUSTOMER", UIColor.LightGray/*TelstraGreyL6*/, TowLabelTextSize);
 			var name = Customer.AddLabel ("CustomerName", "Peter Parker", UIColor.Black, TowDataTextSize);
@@ -75,7 +75,7 @@ namespace AutoLayout
 			
 		}
 
-		void SetContact (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView SiteContact)
+		void SetContact (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, AutoLayoutContentView SiteContact)
 		{
 			SiteContact.AddLabel ("SiteContactLabel", "SITE CONTACT", UIColor.LightGray/*TelstraGreyL6*/, TowLabelTextSize);
 			var name = SiteContact.AddLabel ("SiteContactName", "Natasha Romanov", UIColor.Black, TowDataTextSize);
@@ -91,7 +91,7 @@ namespace AutoLayout
 		}
 
 
-		static void SetPremisesTabs (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView PremisesBorder)
+		static void SetPremisesTabs (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, AutoLayoutContentView PremisesBorder)
 		{
 			var PremisesTabBox = PremisesBorder.AddContainer ("PremisesTabBox", UIColor.White);
 			var ConnectionPillarTabBox = PremisesBorder.AddContainer ("ConnectionPillarTabBox", UIColor.LightGray);
@@ -107,7 +107,7 @@ namespace AutoLayout
 			SetPremises (Set, PremisesBorder);
 		}
 
-		static void SetPremises (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView PremisesBorder)
+		static void SetPremises (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, AutoLayoutContentView PremisesBorder)
 		{
 			var address = PremisesBorder.AddLabel ("PremisesAddress", "UNIT 103, 402 DRAYTON-WELLCAMP RD PARRAMATTA", UIColor.Black, 15);
 			Set.Bind (address).To (vm => vm.Hello);
@@ -120,7 +120,7 @@ namespace AutoLayout
 			PremisesBorder.AddConstraint ("H:|-19-[PremisesAddress(<=200)]-(>=6)-[PremisesDirectionsBox(66)]-10-|");
 		}
 
-		static void SetPremisesDirections (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView PremisesBorder)
+		static void SetPremisesDirections (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, AutoLayoutContentView PremisesBorder)
 		{
 			var PremisesDirectionsBox = PremisesBorder.AddContainer ("PremisesDirectionsBox", UIColor.White);
 			PremisesDirectionsBox.AddLabelCenteredX ("PremisesDirections", "Directions", UIColor.Blue, 12);

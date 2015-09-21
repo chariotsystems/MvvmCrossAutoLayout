@@ -3,7 +3,7 @@ using Cirrious.CrossCore.UI;
 
 namespace MvvmCrossAutoLayout.ViewModels
 {
-	public class ContactViewModel 
+	public class ContactDetailsViewModel 
 		: MvxViewModel
 	{
 		public MvxCommand<string> TestCommand { 

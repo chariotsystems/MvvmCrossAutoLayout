@@ -4,12 +4,12 @@ using Foundation;
 
 namespace AutoLayout
 {
-	public class Constraints {
+	public class AutoLayoutConstraints {
 
 		public List<NSObject> Views { get; set; }  
 		public List<NSObject> ViewNames  { get; set; }  
 
-		public Constraints (){
+		public AutoLayoutConstraints (){
 			Views = new List<NSObject> ();
 			ViewNames = new List<NSObject> ();
 		}

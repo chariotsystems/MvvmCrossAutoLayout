@@ -140,35 +140,36 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="ToDo-MvvmCross\_ Touch UI.txt" />
     <None Include="AppDelegate.cs.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="DebugTrace.cs" />
-    <Compile Include="Views\FirstView.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <Compile Include="Views\DashboardView.cs" />
-    <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\SplashView.cs" />
     <Compile Include="Views\TicketView.cs" />
     <Compile Include="AutoLayout\Constraints.cs" />
-    <Compile Include="AutoLayout\ContentView.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Notifications\LocalNotificationHelper.cs" />
     <Compile Include="Notifications\SoundAndVibration.cs" />
-    <Compile Include="Views\ContactView.cs" />
     <Compile Include="AutoLayout\ColorConversion.cs" />
-    <Compile Include="AutoLayout\ListView.cs" />
+    <Compile Include="AutoLayout\AutoLayoutContentView.cs" />
+    <Compile Include="AutoLayout\AutoLayoutListView.cs" />
+    <Compile Include="Helpers\MvxUIRefreshControl.cs" />
+    <Compile Include="Views\ContactsListView.cs" />
+    <Compile Include="Views\ContactDetailView.cs" />
+    <Compile Include="Views\ContactsListTableViewSourceewSource.cs" />
+    <Compile Include="Views\ContactListTableRow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="AutoLayout\" />
     <Folder Include="Notifications\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_directions.png" />

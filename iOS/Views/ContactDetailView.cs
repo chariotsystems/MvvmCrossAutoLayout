@@ -12,8 +12,8 @@ using MvvmCrossAutoLayout.iOS;
 namespace AutoLayout
 {
 
-	[Register ("ContactView")]
-	public class ContactView : MvxViewController
+	[Register ("ContactDetailView")]
+	public class ContactDetailView : MvxViewController
 	{
 		public override void ViewDidLoad ()
 		{
@@ -25,8 +25,8 @@ namespace AutoLayout
 
 		private UIView BuildView ()
 		{
-			var Set = this.CreateBindingSet<ContactView, ContactViewModel> ();
-			var Root = ContentView.CreateRoot ("Root", UIColor.DarkGray);
+			var Set = this.CreateBindingSet<ContactDetailView, ContactDetailsViewModel> ();
+			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray);
 			NavigationController.NavigationBarHidden = true;
 
 			// Scroll View uses all of main view width
@@ -39,11 +39,11 @@ namespace AutoLayout
 			var NotifyBorder = Root.AddContainer ("NotifyBorder", UIColor.White);
 			var HobbiesBorder = Root.AddContainer ("HobbiesBorder", UIColor.White);
 			var FriendsBorder = Root.AddContainer ("FriendsBorder", UIColor.White);
-			ProfileBorder.AddParentConstraint ("V:|-16-[ProfileBorder(80)]-4-[NotifyBorder]-[HobbiesBorder]-[FriendsBorder]-(>=4)-|");
-			ProfileBorder.AddParentConstraint ("H:|-4-[ProfileBorder]-4-|");
-			NotifyBorder.AddParentConstraint ("H:|-4-[NotifyBorder]-4-|");
-			HobbiesBorder.AddParentConstraint ("H:|-4-[HobbiesBorder]-4-|");
-			FriendsBorder.AddParentConstraint ("H:|-4-[FriendsBorder]-4-|");
+			Root.AddConstraint ("V:|-16-[ProfileBorder(80)]-4-[NotifyBorder]-[HobbiesBorder]-[FriendsBorder]-(>=4)-|");
+			Root.AddConstraint ("H:|-4-[ProfileBorder]-4-|");
+			Root.AddConstraint ("H:|-4-[NotifyBorder]-4-|");
+			Root.AddConstraint ("H:|-4-[HobbiesBorder]-4-|");
+			Root.AddConstraint ("H:|-4-[FriendsBorder]-4-|");
 
 			SetProfile (Set, ProfileBorder);
 
@@ -54,13 +54,13 @@ namespace AutoLayout
 		}
 
 		//TODO: edit button
-		void SetProfile (MvxFluentBindingDescriptionSet<ContactView, ContactViewModel> Set, ContentView ProfileBorder)
+		void SetProfile (MvxFluentBindingDescriptionSet<ContactDetailView, ContactDetailsViewModel> Set, AutoLayoutContentView ProfileBorder)
 		{
 			var Details = ProfileBorder.AddContainer ("Details", UIColor.White);
 			var Photo = ProfileBorder.AddContainer ("Photo", UIColor.White);
-			Details.AddParentConstraint ("V:|-[Details]-|");
-			Photo.AddParentConstraint ("V:|-[Photo]-(>=8)-|");
-			Details.AddParentConstraint ("H:|-[Details]-(>=8)-[Photo]-|");
+			ProfileBorder.AddConstraint ("V:|-[Details]-|");
+			ProfileBorder.AddConstraint ("V:|-[Photo]-(>=8)-|");
+			ProfileBorder.AddConstraint ("H:|-[Details]-(>=8)-[Photo]-|");
 			Photo.AddImageCenteredX ("Picture", "Alex.jpg");
 			Photo.AddConstraint ("H:|[Picture(48)]|");
 			Photo.AddConstraint ("V:|[Picture(64)]|");
@@ -70,6 +70,8 @@ namespace AutoLayout
 			Details.AddConstraint ("V:|[Name]-[Phone]-[Email]-(>=8)-|");
 		}
 
+		//TODO: input fields and text conversions
+		//Content.AddTextCenteredX("Fnn", "Hello", UIColor.Black, UIColor.Yellow, 16);
 		//		void SetCustomer (MvxFluentBindingDescriptionSet<TicketView, TicketViewModel> Set, ContentView Customer)
 		//		{
 		//			Customer.AddLabel ("CustomerLabel", "CUSTOMER", UIColor.LightGray/*TelstraGreyL6*/, 12);
