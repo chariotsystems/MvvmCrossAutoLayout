@@ -17,19 +17,7 @@ namespace MvvmCrossAutoLayout.ViewModels
 			set { RaisePropertyChanged (() => Telstra); }
 		}
 
-		private string _PremisesTabBackgroundColor = "#00FFFF";
 
-		public string PremisesTabBackgroundColor {
-			get { return _PremisesTabBackgroundColor; }
-			set { RaisePropertyChanged (() => PremisesTabBackgroundColor); }
-		}
-
-		private string _PremisesTabTextColor = "#E5E5E5";
-
-		public string PremisesTabTextColor {
-			get { return _PremisesTabTextColor; }
-			set { RaisePropertyChanged (() => PremisesTabTextColor); }
-		}
 
 		private MvxColor _BackgroundColor = MvxColors.Cornsilk;
 
@@ -62,8 +50,6 @@ namespace MvvmCrossAutoLayout.ViewModels
 			// causes some kind of race condition;
 			_hello = commandParameter;
 			_Telstra = !Telstra;
-			_PremisesTabBackgroundColor = "#FF0000";
-			_PremisesTabTextColor = "#FF00FF";
 			RaiseAllPropertiesChanged ();
 		}
 	}

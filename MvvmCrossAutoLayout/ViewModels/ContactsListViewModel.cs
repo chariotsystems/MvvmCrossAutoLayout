@@ -10,31 +10,44 @@ using MvvmCrossAutoLayout.Interfaces;
 
 namespace MvvmCrossAutoLayout.ViewModels
 {
-	public class ContactsListViewModel : MvxViewModel, IRemove
+	public class ContactsListViewModel : MvxViewModel, IMvxTableRowCommands
 	{
+		/// <summary>
+		/// busy indicator for table refreshes
+		/// </summary>
+		public INC<bool> IsBusy = new NC<bool> ();
 
 		public List<ContactDetail> Contacts { get; set; }
 
 		public ContactsListViewModel ()
 		{
-			ReloadCommand = new MvxCommand (RefreshHoursFromTable);
+			ReloadCommand = new MvxCommand (RefreshDataForTable);
+
+			SelectedCommand = new MvxCommand<int> (rowId => {
+				int x = rowId;
+				// TODO: navigate to detail of this row.
+			});
+
+			RemoveCommand = new MvxCommand<int> (rowId => {
+				int x = rowId;
+			});
+
+			RefreshDataForTable ();
+
 		}
 
-		public System.Windows.Input.ICommand RemoveCommand {
-			get { throw new System.NotImplementedException (); }
-		}
+		public ICommand RemoveCommand  { get; set; }
 
-		public System.Windows.Input.ICommand SelectedCommand {
-			get { throw new System.NotImplementedException (); }
-		}
+		public ICommand SelectedCommand  { get; set; }
 
 		public ICommand ReloadCommand { get; set; }
 
 		/// <summary>
 		/// Pull to refresh support
 		/// </summary>
-		private async void RefreshHoursFromTable ()
+		private async void RefreshDataForTable ()
 		{
+			IsBusy.Value = true;
 			Contacts = new List<ContactDetail> (); 
 			var entry = new ContactDetail () {
 				Name = "Alex",
@@ -55,7 +68,7 @@ namespace MvvmCrossAutoLayout.ViewModels
 			Contacts.Add (entry);
 			Contacts.Add (entry2);
 			Contacts.Add (entry3);
-
+			IsBusy.Value = false;
 			RaiseAllPropertiesChanged ();
 		}
 	}

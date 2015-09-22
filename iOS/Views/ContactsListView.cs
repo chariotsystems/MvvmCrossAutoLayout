@@ -57,7 +57,7 @@ namespace AutoLayout.Views
 			var set = this.CreateBindingSet<ContactsListView, ContactsListViewModel> ();
 			set.Bind (hoursTableSource).To (vm => vm.Contacts);
 			set.Bind (refreshControl).For (r => r.RefreshCommand).To (vm => vm.ReloadCommand);
-//			set.Bind (refreshControl).For (r => r.IsRefreshing).To (vm => vm.IsBusy);
+			set.Bind (refreshControl).For (r => r.IsRefreshing).To (vm => vm.IsBusy);
 			set.Apply ();          
 		}
 	}

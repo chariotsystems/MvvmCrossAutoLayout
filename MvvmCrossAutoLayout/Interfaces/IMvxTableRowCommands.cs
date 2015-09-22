@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace MvvmCrossAutoLayout.Interfaces
 {
-	public interface IRemove
+	public interface IMvxTableRowCommands
 	{
 		ICommand RemoveCommand { get; }
 

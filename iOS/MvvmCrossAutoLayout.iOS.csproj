@@ -102,6 +102,12 @@
     <Reference Include="Cirrious.MvvmCross.Plugins.Visibility.Touch">
       <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Visibility.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.Visibility.Touch.dll</HintPath>
     </Reference>
+    <Reference Include="Cirrious.MvvmCross.FieldBinding">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.FieldBinding.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.FieldBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.FieldBinding">
+      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.FieldBinding.3.5.1\lib\Xamarin.iOS10\Cirrious.MvvmCross.Plugins.FieldBinding.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MvvmCrossAutoLayout\MvvmCrossAutoLayout.Data.csproj">
@@ -149,21 +155,21 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Views\SplashView.cs" />
     <Compile Include="Views\TicketView.cs" />
-    <Compile Include="AutoLayout\Constraints.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Notifications\LocalNotificationHelper.cs" />
     <Compile Include="Notifications\SoundAndVibration.cs" />
-    <Compile Include="AutoLayout\ColorConversion.cs" />
     <Compile Include="AutoLayout\AutoLayoutContentView.cs" />
-    <Compile Include="AutoLayout\AutoLayoutListView.cs" />
     <Compile Include="Helpers\MvxUIRefreshControl.cs" />
     <Compile Include="Views\ContactsListView.cs" />
     <Compile Include="Views\ContactDetailView.cs" />
-    <Compile Include="Views\ContactsListTableViewSourceewSource.cs" />
     <Compile Include="Views\ContactListTableRow.cs" />
+    <Compile Include="Views\ContactsListTableViewSource.cs" />
+    <Compile Include="Bootstrap\FieldBindingPluginBootstrap.cs" />
+    <Compile Include="Helpers\ColorConversion.cs" />
+    <Compile Include="AutoLayout\AutoLayoutConstraints.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
