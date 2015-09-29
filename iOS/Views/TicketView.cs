@@ -31,7 +31,7 @@ namespace AutoLayout
 		private UIView BuildView ()
 		{
 			var Set = this.CreateBindingSet<TicketView, TicketViewModel> ();
-			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray);
+			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			var ScrollView = Root.AddScrollView ("ScrollView", UIColor.DarkGray);
 
 			var ContactBorder = ScrollView.AddContainer ("ContactBorder", UIColor.White);

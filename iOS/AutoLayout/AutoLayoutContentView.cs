@@ -13,6 +13,7 @@ namespace AutoLayout
 {
 	public class AutoLayoutContentView : UIView
 	{
+		public string Font { get; set; }
 
 		public string Name { get; set; }
 
@@ -20,24 +21,26 @@ namespace AutoLayout
 
 		public AutoLayoutContentView Parent;
 
-		private AutoLayoutContentView (string name, UIColor color)
+		private AutoLayoutContentView (string name, UIColor color, string font)
 		{
 			OurConstraints = new AutoLayoutConstraints ();
 			base.BackgroundColor = color;
+			Font = font;
 			Name = name;
+
 		}
 
 
-		public static AutoLayoutContentView CreateRoot (string name, UIColor color)
+		public static AutoLayoutContentView CreateRoot (string name, UIColor color, string font)
 		{
-			AutoLayoutContentView root = new AutoLayoutContentView (name, null, color);
+			AutoLayoutContentView root = new AutoLayoutContentView (name, null, color, font);
 			root.TranslatesAutoresizingMaskIntoConstraints = true;
 			return root;
 		}
 
-		public static AutoLayoutContentView CreateListContentRoot (string name, UIColor color, UIView view)
+		public static AutoLayoutContentView CreateListContentRoot (string name, UIColor color, UIView view, string font)
 		{
-			AutoLayoutContentView root = new AutoLayoutContentView (name, null, color);
+			AutoLayoutContentView root = new AutoLayoutContentView (name, null, color, font);
 			root.TranslatesAutoresizingMaskIntoConstraints = true;
 			int width = (int)view.Bounds.Size.Width;
 			int height = (int)view.Bounds.Size.Height;
@@ -47,14 +50,9 @@ namespace AutoLayout
 
 
 
-		private AutoLayoutContentView (string name, AutoLayoutContentView parent, UIColor color, float x = 10, float y = 10, float width = 10, float height = 10)
+		private AutoLayoutContentView (string name, AutoLayoutContentView parent, UIColor color, String font, float x = 10, float y = 10, float width = 10, float height = 10)
 		{
-			Init (name, parent, color, x, y, width, height);	
-		}
-
-
-		private void Init (string name, AutoLayoutContentView parent, UIColor color, float x = 10, float y = 10, float width = 10, float height = 10)
-		{
+			Font = font;
 			OurConstraints = new AutoLayoutConstraints ();
 			Parent = parent;
 			base.BackgroundColor = color;
@@ -80,7 +78,7 @@ namespace AutoLayout
 			var label = new UILabel ();
 			label.Text = name;
 			label.TextColor = UIColor.Black;
-			label.Font = UIFont.FromName ("Helvetica-Bold", 12);
+			label.Font = UIFont.FromName (Font, 12);
 			label.Frame = new RectangleF (10, 10, 200, 100);
 			return label;
 		}
@@ -95,7 +93,7 @@ namespace AutoLayout
 
 		public AutoLayoutContentView AddContainer (string name, UIColor color)
 		{
-			AutoLayoutContentView content = new AutoLayoutContentView (name, this, color);
+			AutoLayoutContentView content = new AutoLayoutContentView (name, this, color, this.Font);
 			return content;
 		}
 
@@ -226,8 +224,8 @@ namespace AutoLayout
 			var label = new UILabel ();
 			label.Text = text;
 			label.TextColor = color;
-			label.Font = UIFont.FromName ("Helvetica-Bold", size);
-			label.Frame = new RectangleF (10, 10, 10, 10);// Is this still required?
+			label.Font = UIFont.FromName (Font, size);
+			label.Frame = DefaultFrame ();
 			label.TranslatesAutoresizingMaskIntoConstraints = false;
 			label.LineBreakMode = UILineBreakMode.WordWrap;
 			label.Lines = 0;  
@@ -286,13 +284,124 @@ namespace AutoLayout
 			textView.Text = text;
 			textView.TextColor = textColor;
 			textView.BackgroundColor = backgroundColor;
-			textView.Font = UIFont.FromName ("Helvetica-Bold", size);
-			textView.Frame = new RectangleF (10, 10, 10, 10);// Is this still required?
+			textView.Font = UIFont.FromName (Font, size);
+			textView.Frame = DefaultFrame ();
 			textView.TranslatesAutoresizingMaskIntoConstraints = false;
 			OurConstraints.ViewNames.Add (new NSString (name));
 			OurConstraints.Views.Add (textView);
 			this.Add (textView);
 			return textView;
+		}
+
+		public UIButton AddButton (string name, string text, UIColor textColor, UIColor backgroundColor, float size)
+		{
+			var buttonView = new UIButton ();
+			buttonView.BackgroundColor = backgroundColor;
+			buttonView.Frame = DefaultFrame ();
+			buttonView.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (buttonView);
+			this.Add (buttonView);
+			return buttonView;
+		}
+
+		public UISegmentedControl AddSegmentedControl (string name, string text, UIColor textColor, UIColor backgroundColor, float size)
+		{
+			var segmentedControlView = new UISegmentedControl ();
+			segmentedControlView.BackgroundColor = backgroundColor;
+			segmentedControlView.Frame = DefaultFrame ();
+			segmentedControlView.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (segmentedControlView);
+			this.Add (segmentedControlView);
+			return segmentedControlView;
+		}
+
+		public UISlider AddSlider (string name, UIColor backgroundColor)
+		{
+			var slider = new UISlider ();
+			slider.BackgroundColor = backgroundColor;
+			slider.Frame = DefaultFrame ();
+			slider.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (slider);
+			this.Add (slider);
+			return slider;
+		}
+
+		public UISwitch AddSwitch (string name, UIColor backgroundColor)
+		{
+			var switchView = new UISwitch ();
+			switchView.BackgroundColor = backgroundColor;
+			switchView.Frame = DefaultFrame ();
+			switchView.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (switchView);
+			this.Add (switchView);
+			return switchView;
+		}
+
+		public UIActivityIndicatorView AddActivityIndicator (string name, UIColor backgroundColor)
+		{
+			var activityIndicatorView = new UIActivityIndicatorView ();
+			activityIndicatorView.BackgroundColor = backgroundColor;
+			activityIndicatorView.Frame = DefaultFrame ();
+			activityIndicatorView.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (activityIndicatorView);
+			this.Add (activityIndicatorView);
+			return activityIndicatorView;
+		}
+
+		public UIProgressView AddProgressView (string name, UIColor backgroundColor)
+		{
+			var progressView = new UIProgressView ();
+			progressView.BackgroundColor = backgroundColor;
+			progressView.Frame = DefaultFrame ();
+			progressView.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (progressView);
+			this.Add (progressView);
+			return progressView;
+		}
+
+		public UIPageControl AddPageControl (string name, UIColor backgroundColor)
+		{
+			var pageControl = new UIPageControl ();
+			pageControl.BackgroundColor = backgroundColor;
+			pageControl.Frame = DefaultFrame ();
+			pageControl.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (pageControl);
+			this.Add (pageControl);
+			return pageControl;
+		}
+
+		public UIStepper AddStepper (string name, UIColor backgroundColor)
+		{
+			var stepper = new UIStepper ();
+			stepper.BackgroundColor = backgroundColor;
+			stepper.Frame = DefaultFrame ();
+			stepper.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (stepper);
+			this.Add (stepper);
+			return stepper;
+		}
+
+		public UIView AddView (string name, UIView view)
+		{
+			view.Frame = DefaultFrame ();
+			view.TranslatesAutoresizingMaskIntoConstraints = false;
+			OurConstraints.ViewNames.Add (new NSString (name));
+			OurConstraints.Views.Add (view);
+			this.Add (view);
+			return view;
+		}
+
+		private RectangleF DefaultFrame ()
+		{
+			return new RectangleF (10, 10, 10, 10);
 		}
 
 		//https://developer.apple.com/library/ios/technotes/tn2154/_index.html
@@ -302,7 +411,7 @@ namespace AutoLayout
 			var scrollView = new UIScrollView ();
 			this.Add (scrollView);
 			scrollView.Frame = new RectangleF (10, 10, 10, 10);// TODO: Is this still required?
-			AutoLayoutContentView contentView = new AutoLayoutContentView (name, color);
+			AutoLayoutContentView contentView = new AutoLayoutContentView (name, color, Font);
 			contentView.Frame = new RectangleF (10, 10, 10, 10);// TODO: Is this still required?
 			scrollView.Add (contentView);
 
@@ -316,7 +425,6 @@ namespace AutoLayout
 
 			AddConstraint ("H:|[PrivateScrollView(" + width + ")]|");
 			AddConstraint ("V:|[PrivateScrollView(>=" + height + ")]|");
-			//scrollView.Add (DebugLabel ("scrollView"));
 			AutoLayoutConstraints ScrollViewConstraints = new AutoLayout.AutoLayoutConstraints ();
 			ScrollViewConstraints.ViewNames.Add (new NSString ("PrivateContentView"));
 			ScrollViewConstraints.Views.Add (contentView);
@@ -326,7 +434,6 @@ namespace AutoLayout
 			OurConstraints.ViewNames.Add (new NSString (name));
 			OurConstraints.Views.Add (contentView);
 			contentView.Parent = Parent;
-			//scrollView.Add (DebugLabel ("______________contentView"));
 			return contentView;
 		}
 

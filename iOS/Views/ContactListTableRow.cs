@@ -28,7 +28,7 @@ namespace AutoLayout.Views
 
 		private void CreateLayout ()
 		{
-			var ProfileBorder = AutoLayoutContentView.CreateListContentRoot ("ListContentRoot", UIColor.LightGray, ContentView); 
+			var ProfileBorder = AutoLayoutContentView.CreateListContentRoot ("ListContentRoot", UIColor.LightGray, ContentView, "Helvetica-Bold"); 
 			var Details = ProfileBorder.AddContainer ("Details", UIColor.White);
 			var Photo = ProfileBorder.AddContainer ("Photo", UIColor.White);
 			ProfileBorder.AddConstraint ("V:|-[Details(>=30)]-|");
@@ -46,9 +46,9 @@ namespace AutoLayout.Views
 			this.DelayBind (() => {
 				var set = this.CreateBindingSet<ContactListTableRow, ContactDetail> ();
 				// TODO: text color, background color and visibility binding.
-				set.Bind (phone).To (vm => vm.PhoneNumber);
+				//set.Bind (phone).To (vm => vm.PhoneNumber);
 				//set.Bind (email).To (vm => vm.Email);
-				set.Bind (name).To (vm => vm.Name);
+				//set.Bind (name).To (vm => vm.Name);
 				set.Apply ();
 			});
 

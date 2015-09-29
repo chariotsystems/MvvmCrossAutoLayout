@@ -36,7 +36,7 @@ namespace AutoLayout.Views
 			base.ViewDidLoad ();
 
 			var Set = this.CreateBindingSet<ContactsListView, ContactsListViewModel> ();
-			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray);
+			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			var ListPanel = Root.AddContainer ("ListPanel", UIColor.White);
 			var Name = Root.AddLabel ("Name", "List Title", UIColor.Blue, 12);
 			Root.AddConstraint ("V:|-16-[Name]-[ListPanel]-|");

@@ -26,7 +26,7 @@ namespace AutoLayout
 		private UIView BuildView ()
 		{
 			var Set = this.CreateBindingSet<ContactDetailView, ContactDetailsViewModel> ();
-			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray);
+			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			NavigationController.NavigationBarHidden = true;
 
 			// Scroll View uses all of main view width
