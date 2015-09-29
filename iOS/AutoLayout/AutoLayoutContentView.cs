@@ -293,7 +293,7 @@ namespace AutoLayout
 			return textView;
 		}
 
-		public UIButton AddButton (string name, string text, UIColor textColor, UIColor backgroundColor, float size)
+		public UIButton AddButton (string name, string text, UIColor backgroundColor, float size)
 		{
 			var buttonView = new UIButton ();
 			buttonView.BackgroundColor = backgroundColor;
@@ -305,7 +305,7 @@ namespace AutoLayout
 			return buttonView;
 		}
 
-		public UISegmentedControl AddSegmentedControl (string name, string text, UIColor textColor, UIColor backgroundColor, float size)
+		public UISegmentedControl AddSegmentedControl (string name, UIColor backgroundColor)
 		{
 			var segmentedControlView = new UISegmentedControl ();
 			segmentedControlView.BackgroundColor = backgroundColor;

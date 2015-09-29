@@ -43,22 +43,22 @@ namespace AutoLayout.Views
 			Root.AddConstraint ("H:|-40-[Name]-40-|");
 			Root.AddConstraint ("H:|-4-[ListPanel]-4-|");
 			var Rabbit = ListPanel.AddLabelLeft ("Rabbit", "Rabbit is here", UIColor.Green, 12);
-			var hoursTable = ListPanel.AddTableView ("HoursTable");
-			ListPanel.AddConstraint ("V:|-16-[Rabbit]-[HoursTable]-|");
-			ListPanel.AddConstraint ("H:|-[HoursTable]-|");
-			var hoursTableSource = new ContactsListTableViewSource (ViewModel, hoursTable);
-			var refreshControl = new MvxUIRefreshControl ();
-			hoursTable.AddSubview (refreshControl);
-			hoursTable.Source = hoursTableSource;
-			hoursTable.ReloadData ();
-
-			View = Root;
-
-			var set = this.CreateBindingSet<ContactsListView, ContactsListViewModel> ();
-			set.Bind (hoursTableSource).To (vm => vm.Contacts);
-			set.Bind (refreshControl).For (r => r.RefreshCommand).To (vm => vm.ReloadCommand);
-			set.Bind (refreshControl).For (r => r.IsRefreshing).To (vm => vm.IsBusy);
-			set.Apply ();          
+//			var hoursTable = ListPanel.AddTableView ("HoursTable");
+//			ListPanel.AddConstraint ("V:|-16-[Rabbit]-[HoursTable]-|");
+//			ListPanel.AddConstraint ("H:|-[HoursTable]-|");
+//			var hoursTableSource = new ContactsListTableViewSource (ViewModel, hoursTable);
+//			var refreshControl = new MvxUIRefreshControl ();
+//			hoursTable.AddSubview (refreshControl);
+//			hoursTable.Source = hoursTableSource;
+//			hoursTable.ReloadData ();
+//
+//			View = Root;
+//
+//			var set = this.CreateBindingSet<ContactsListView, ContactsListViewModel> ();
+//			set.Bind (hoursTableSource).To (vm => vm.Contacts);
+//			set.Bind (refreshControl).For (r => r.RefreshCommand).To (vm => vm.ReloadCommand);
+//			set.Bind (refreshControl).For (r => r.IsRefreshing).To (vm => vm.IsBusy);
+//			set.Apply ();          
 		}
 	}
 }

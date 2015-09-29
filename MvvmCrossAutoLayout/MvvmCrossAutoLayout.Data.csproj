@@ -39,8 +39,8 @@
     <Compile Include="Services\KittenGenesisService.cs" />
     <Compile Include="Model\ContactDetail.cs" />
     <Compile Include="ViewModels\ContactsListViewModel.cs" />
-    <Compile Include="ViewModels\ContactDetailsViewModel.cs" />
     <Compile Include="Interfaces\IMvxTableRowCommands.cs" />
+    <Compile Include="ViewModels\ContactDetailViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

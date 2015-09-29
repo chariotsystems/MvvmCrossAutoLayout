@@ -25,7 +25,7 @@ namespace AutoLayout
 
 		private UIView BuildView ()
 		{
-			var Set = this.CreateBindingSet<ContactDetailView, ContactDetailsViewModel> ();
+			var Set = this.CreateBindingSet<ContactDetailView, ContactDetailViewModel> ();
 			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			NavigationController.NavigationBarHidden = true;
 
@@ -36,16 +36,19 @@ namespace AutoLayout
 			//TODO: wrap uiscrollview like contentview so that it can have its own AddConstraints method
 
 			var ProfileBorder = Root.AddContainer ("ProfileBorder", UIColor.White);
+			var ComponentsBorder = Root.AddContainer ("ComponentsBorder", UIColor.White);
 			var NotifyBorder = Root.AddContainer ("NotifyBorder", UIColor.White);
 			var HobbiesBorder = Root.AddContainer ("HobbiesBorder", UIColor.White);
 			var FriendsBorder = Root.AddContainer ("FriendsBorder", UIColor.White);
-			Root.AddConstraint ("V:|-16-[ProfileBorder(80)]-4-[NotifyBorder]-[HobbiesBorder]-[FriendsBorder]-(>=4)-|");
+			Root.AddConstraint ("V:|-16-[ProfileBorder(80)]-4-[ComponentsBorder]-[NotifyBorder]-[HobbiesBorder]-[FriendsBorder]-(>=4)-|");
 			Root.AddConstraint ("H:|-4-[ProfileBorder]-4-|");
+			Root.AddConstraint ("H:|-4-[ComponentsBorder]-4-|");
 			Root.AddConstraint ("H:|-4-[NotifyBorder]-4-|");
 			Root.AddConstraint ("H:|-4-[HobbiesBorder]-4-|");
 			Root.AddConstraint ("H:|-4-[FriendsBorder]-4-|");
 
 			SetProfile (Set, ProfileBorder);
+			SetComponents (Set, ComponentsBorder);
 
 
 			Set.Apply ();
@@ -54,7 +57,7 @@ namespace AutoLayout
 		}
 
 		//TODO: edit button
-		void SetProfile (MvxFluentBindingDescriptionSet<ContactDetailView, ContactDetailsViewModel> Set, AutoLayoutContentView ProfileBorder)
+		void SetProfile (MvxFluentBindingDescriptionSet<ContactDetailView, ContactDetailViewModel> Set, AutoLayoutContentView ProfileBorder)
 		{
 			var Details = ProfileBorder.AddContainer ("Details", UIColor.White);
 			var Photo = ProfileBorder.AddContainer ("Photo", UIColor.White);
@@ -68,6 +71,29 @@ namespace AutoLayout
 			Details.AddLabelLeft ("Phone", "0456 234 154", UIColor.Blue, 12);
 			Details.AddLabelLeft ("Email", "alex.eadie@themail.com", UIColor.Blue, 12);
 			Details.AddConstraint ("V:|[Name]-[Phone]-[Email]-(>=8)-|");
+		}
+
+		void SetComponents (MvxFluentBindingDescriptionSet<ContactDetailView, ContactDetailViewModel> Set, AutoLayoutContentView ComponentsBorder)
+		{
+			ComponentsBorder.AddButton ("Button1", "Button1", UIColor.Blue, 12);
+			ComponentsBorder.AddActivityIndicator ("ActivityIndicator", UIColor.Blue);
+			ComponentsBorder.AddPageControl ("PageControl", UIColor.Blue);
+			ComponentsBorder.AddProgressView ("ProgressView", UIColor.Blue);
+			ComponentsBorder.AddSlider ("Slider", UIColor.Blue);
+			ComponentsBorder.AddSwitch ("Switch", UIColor.Blue);
+			ComponentsBorder.AddSegmentedControl ("SegmentedControl", UIColor.Blue);
+			// Show that we can add in other UIViews that don't have their own bespoke Add methods.
+			var button2 = ComponentsBorder.AddView ("Button2", new UIButton ());
+			button2.BackgroundColor = UIColor.Green;
+			ComponentsBorder.AddConstraint ("V:|-[Button1(20)]-[ActivityIndicator(60)]-[PageControl(50)]-[ProgressView(50)]-[Slider]-[Switch]-[SegmentedControl]-|");
+			ComponentsBorder.AddConstraint ("V:|-[Button2(20)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[Button1(20)]-[Button2(20)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[ActivityIndicator(60)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[PageControl(50)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[ProgressView(50)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[Slider(100)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[Switch]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[SegmentedControl]-(>=8)-|");
 		}
 
 		//TODO: input fields and text conversions
