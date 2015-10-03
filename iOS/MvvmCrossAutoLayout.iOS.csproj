@@ -180,7 +180,6 @@
     <BundleResource Include="Resources\ic_directions.png" />
     <BundleResource Include="Resources\ic_logo.png" />
     <BundleResource Include="Resources\ic_phone.png" />
-    <BundleResource Include="Resources\ic_telstra_logo.png" />
     <BundleResource Include="Resources\Alex.jpg" />
   </ItemGroup>
 </Project>
