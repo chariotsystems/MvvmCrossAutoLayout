@@ -159,13 +159,14 @@
     <Compile Include="Notifications\SoundAndVibration.cs" />
     <Compile Include="AutoLayout\AutoLayoutContentView.cs" />
     <Compile Include="Helpers\MvxUIRefreshControl.cs" />
-    <Compile Include="Views\ContactsListView.cs" />
-    <Compile Include="Views\ContactDetailView.cs" />
-    <Compile Include="Views\ContactListTableRow.cs" />
-    <Compile Include="Views\ContactsListTableViewSource.cs" />
     <Compile Include="Bootstrap\FieldBindingPluginBootstrap.cs" />
     <Compile Include="Helpers\ColorConversion.cs" />
     <Compile Include="AutoLayout\AutoLayoutConstraints.cs" />
+    <Compile Include="Views\SimpleExampleView.cs" />
+    <Compile Include="Views\ScrollExampleView.cs" />
+    <Compile Include="Views\ListExampleView.cs" />
+    <Compile Include="Views\ListExampleTableViewSource.cs" />
+    <Compile Include="Views\ListExampleTableRow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

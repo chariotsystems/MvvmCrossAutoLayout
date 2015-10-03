@@ -4,12 +4,8 @@ using MvvmCrossAutoLayout.Core.Model;
 
 namespace MvvmCrossAutoLayout.Core.ViewModels
 {
-	public class ContactDetailViewModel 
-		: MvxViewModel
+	public class SimpleExampleViewModel : MvxViewModel
 	{
-		//		public MvxCommand<string> TestCommand {
-		//			get { return new MvxCommand<string> (Test); }
-		//		}
 
 
 		private MvxColor _BackgroundColor = MvxColors.Cornsilk;
@@ -43,6 +39,10 @@ namespace MvvmCrossAutoLayout.Core.ViewModels
 				RaisePropertyChanged (() => ContactDetail);
 			}
 		}
+
+		//		public MvxCommand<string> TestCommand {
+		//			get { return new MvxCommand<string> (Test); }
+		//		}
 
 		//		public void Test (string commandParameter)
 		//		{

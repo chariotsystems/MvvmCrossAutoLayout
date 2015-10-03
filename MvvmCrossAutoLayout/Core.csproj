@@ -33,9 +33,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.cs" />
     <Compile Include="Model\ContactDetail.cs" />
-    <Compile Include="ViewModels\ContactsListViewModel.cs" />
     <Compile Include="Interfaces\IMvxTableRowCommands.cs" />
-    <Compile Include="ViewModels\ContactDetailViewModel.cs" />
+    <Compile Include="ViewModels\ListExampleViewModel.cs" />
+    <Compile Include="ViewModels\SimpleExampleViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

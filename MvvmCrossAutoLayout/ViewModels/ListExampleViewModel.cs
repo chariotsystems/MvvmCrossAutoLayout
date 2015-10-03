@@ -10,7 +10,7 @@ using MvvmCrossAutoLayout.Core.Interfaces;
 
 namespace MvvmCrossAutoLayout.Core.ViewModels
 {
-	public class ContactsListViewModel : MvxViewModel, IMvxTableRowCommands
+	public class ListExampleViewModel : MvxViewModel, IMvxTableRowCommands
 	{
 		/// <summary>
 		/// busy indicator for table refreshes
@@ -19,7 +19,7 @@ namespace MvvmCrossAutoLayout.Core.ViewModels
 
 		public List<ContactDetail> Contacts { get; set; }
 
-		public ContactsListViewModel ()
+		public ListExampleViewModel ()
 		{
 			ReloadCommand = new MvxCommand (RefreshDataForTable);
 

@@ -20,13 +20,13 @@ using Cirrious.MvvmCross.Touch.Views;
 namespace AutoLayout.Views
 {
 
-	[Register ("ContactsListView")]
-	public class ContactsListView : MvxViewController
+	[Register ("ListExampleView")]
+	public class ListExampleView : MvxViewController
 	{
-		private ContactsListViewModel viewModel;
+		private ListExampleViewModel viewModel;
 
-		public new ContactsListViewModel ViewModel {
-			get { return viewModel ?? (viewModel = base.ViewModel as ContactsListViewModel); }
+		public new ListExampleViewModel ViewModel {
+			get { return viewModel ?? (viewModel = base.ViewModel as ListExampleViewModel); }
 		}
 
 		public override void ViewDidLoad ()
@@ -35,7 +35,7 @@ namespace AutoLayout.Views
 
 			base.ViewDidLoad ();
 
-			var Set = this.CreateBindingSet<ContactsListView, ContactsListViewModel> ();
+			var Set = this.CreateBindingSet<ListExampleView, ListExampleViewModel> ();
 			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			var ListPanel = Root.AddContainer ("ListPanel", UIColor.White);
 			var Name = Root.AddLabel ("Name", "List Title", UIColor.Blue, 12);

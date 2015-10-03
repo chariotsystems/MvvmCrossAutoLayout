@@ -11,15 +11,15 @@ using MvvmCrossAutoLayout.Core.Model;
 
 namespace AutoLayout.Views
 {
-	[Register ("ContactListTableRow")]
-	public class ContactListTableRow : MvxTableViewCell
+	[Register ("ListExampleTableRow")]
+	public class ListExampleTableRow : MvxTableViewCell
 	{
-		public ContactListTableRow ()
+		public ListExampleTableRow ()
 		{
 			CreateLayout ();
 		}
 
-		public ContactListTableRow (IntPtr handle)
+		public ListExampleTableRow (IntPtr handle)
 			: base (handle)
 		{
 			CreateLayout ();
@@ -44,7 +44,7 @@ namespace AutoLayout.Views
 
 			ContentView.AddSubviews (ProfileBorder);
 			this.DelayBind (() => {
-				var set = this.CreateBindingSet<ContactListTableRow, ContactDetail> ();
+				var set = this.CreateBindingSet<ListExampleTableRow, ContactDetail> ();
 				// TODO: text color, background color and visibility binding.
 				//set.Bind (phone).To (vm => vm.PhoneNumber);
 				//set.Bind (email).To (vm => vm.Email);

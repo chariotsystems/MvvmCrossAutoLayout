@@ -12,17 +12,17 @@ using AutoLayout.Views;
 
 namespace AutoLayout.iOS.Helpers
 {
-	public class ContactsListTableViewSource : MvxTableViewSource
+	public class ListExampleTableViewSource : MvxTableViewSource
 	{
 
 
 		private IMvxTableRowCommands viewModel;
 
-		public ContactsListTableViewSource (IMvxTableRowCommands viewModel, UITableView tableView)
+		public ListExampleTableViewSource (IMvxTableRowCommands viewModel, UITableView tableView)
 			: base (tableView)
 		{
 			this.viewModel = viewModel;
-			tableView.RegisterClassForCellReuse (typeof(ContactListTableRow), new NSString ("HoursEntryCell"));
+			tableView.RegisterClassForCellReuse (typeof(ListExampleTableRow), new NSString ("HoursEntryCell"));
 		}
 
 
@@ -61,7 +61,7 @@ namespace AutoLayout.iOS.Helpers
 
 		protected override UITableViewCell GetOrCreateCellFor (UITableView tableView, NSIndexPath indexPath, object item)
 		{
-			return (ContactListTableRow)tableView.DequeueReusableCell ("ContactListTableRow");
+			return (ListExampleTableRow)tableView.DequeueReusableCell ("ContactListTableRow");
 		}
 	}
 }
