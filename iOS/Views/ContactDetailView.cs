@@ -75,19 +75,19 @@ namespace AutoLayout
 
 		void SetComponents (MvxFluentBindingDescriptionSet<ContactDetailView, ContactDetailViewModel> Set, AutoLayoutContentView ComponentsBorder)
 		{
-			ComponentsBorder.AddButton ("Button1", "Button1", UIColor.Blue, 12);
+			ComponentsBorder.AddButton ("Button1", "Button1", UIColor.Green, UIColor.White, 12);
 			ComponentsBorder.AddActivityIndicator ("ActivityIndicator", UIColor.Blue);
 			ComponentsBorder.AddPageControl ("PageControl", UIColor.Blue);
 			ComponentsBorder.AddProgressView ("ProgressView", UIColor.Blue);
 			ComponentsBorder.AddSlider ("Slider", UIColor.Blue);
 			ComponentsBorder.AddSwitch ("Switch", UIColor.Blue);
 			ComponentsBorder.AddSegmentedControl ("SegmentedControl", UIColor.Blue);
-			// Show that we can add in other UIViews that don't have their own bespoke Add methods.
-			var button2 = ComponentsBorder.AddView ("Button2", new UIButton ());
-			button2.BackgroundColor = UIColor.Green;
+			// We can add in other UIViews that don't have their own bespoke Add methods.
+			var button2 = (UIButton)ComponentsBorder.AddView ("Button2", UIButton.FromType (UIButtonType.RoundedRect));
+			button2.SetTitle ("Button2", UIControlState.Normal);
 			ComponentsBorder.AddConstraint ("V:|-[Button1(20)]-[ActivityIndicator(60)]-[PageControl(50)]-[ProgressView(50)]-[Slider]-[Switch]-[SegmentedControl]-|");
 			ComponentsBorder.AddConstraint ("V:|-[Button2(20)]-(>=8)-|");
-			ComponentsBorder.AddConstraint ("H:|-[Button1(20)]-[Button2(20)]-(>=8)-|");
+			ComponentsBorder.AddConstraint ("H:|-[Button1(<=100)]-[Button2(<=100)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[ActivityIndicator(60)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[PageControl(50)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[ProgressView(50)]-(>=8)-|");

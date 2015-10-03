@@ -293,9 +293,12 @@ namespace AutoLayout
 			return textView;
 		}
 
-		public UIButton AddButton (string name, string text, UIColor backgroundColor, float size)
+		public UIButton AddButton (string name, string text, UIColor normalTitleColor, UIColor backgroundColor, float size)
 		{
-			var buttonView = new UIButton ();
+			var buttonView = UIButton.FromType (UIButtonType.RoundedRect);
+			buttonView.SetTitle (text, UIControlState.Normal);
+			buttonView.SetTitleColor (normalTitleColor, UIControlState.Normal);
+			buttonView.Font = UIFont.FromName (Font, size);
 			buttonView.BackgroundColor = backgroundColor;
 			buttonView.Frame = DefaultFrame ();
 			buttonView.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -343,10 +346,11 @@ namespace AutoLayout
 
 		public UIActivityIndicatorView AddActivityIndicator (string name, UIColor backgroundColor)
 		{
-			var activityIndicatorView = new UIActivityIndicatorView ();
+			var activityIndicatorView = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.WhiteLarge);
 			activityIndicatorView.BackgroundColor = backgroundColor;
 			activityIndicatorView.Frame = DefaultFrame ();
 			activityIndicatorView.TranslatesAutoresizingMaskIntoConstraints = false;
+			activityIndicatorView.StartAnimating ();
 			OurConstraints.ViewNames.Add (new NSString (name));
 			OurConstraints.Views.Add (activityIndicatorView);
 			this.Add (activityIndicatorView);
