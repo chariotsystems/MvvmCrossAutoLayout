@@ -110,9 +110,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvvmCrossAutoLayout\MvvmCrossAutoLayout.Data.csproj">
+    <ProjectReference Include="..\MvvmCrossAutoLayout\Core.csproj">
       <Project>{A5226918-4F90-4122-8B23-5C0B9A43C979}</Project>
-      <Name>MvvmCrossAutoLayout.Data</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MvvmCrossAutoLayout.Interfaces
+namespace MvvmCrossAutoLayout.Core.Interfaces
 {
 	public interface IMvxTableRowCommands
 	{

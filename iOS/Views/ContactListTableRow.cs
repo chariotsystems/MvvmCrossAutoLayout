@@ -7,7 +7,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using Foundation;
 using UIKit;
-using MvvmCrossAutoLayout.Model;
+using MvvmCrossAutoLayout.Core.Model;
 
 namespace AutoLayout.Views
 {

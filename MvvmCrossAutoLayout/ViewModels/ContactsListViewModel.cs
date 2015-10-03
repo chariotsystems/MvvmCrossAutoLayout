@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.FieldBinding;
 using Cirrious.MvvmCross.ViewModels;
-using MvvmCrossAutoLayout.Model;
-using MvvmCrossAutoLayout.Interfaces;
+using MvvmCrossAutoLayout.Core.Model;
+using MvvmCrossAutoLayout.Core.Interfaces;
 
-namespace MvvmCrossAutoLayout.ViewModels
+namespace MvvmCrossAutoLayout.Core.ViewModels
 {
 	public class ContactsListViewModel : MvxViewModel, IMvxTableRowCommands
 	{

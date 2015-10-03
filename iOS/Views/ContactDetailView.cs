@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Foundation;
 using Cirrious.MvvmCross.Touch.Views;
 using Cirrious.MvvmCross.Binding.BindingContext;
-using MvvmCrossAutoLayout.ViewModels;
+using MvvmCrossAutoLayout.Core.ViewModels;
 using ObjCRuntime;
 using MvvmCrossAutoLayout.iOS;
 

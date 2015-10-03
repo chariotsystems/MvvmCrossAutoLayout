@@ -6,7 +6,7 @@ using Cirrious.CrossCore;
 using Cirrious.MvvmCross.Binding.Touch.Views;
 using UIKit;
 using Foundation;
-using MvvmCrossAutoLayout.Interfaces;
+using MvvmCrossAutoLayout.Core.Interfaces;
 using AutoLayout.Views;
 
 

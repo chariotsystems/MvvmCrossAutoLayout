@@ -1,56 +1,55 @@
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore.UI;
+using MvvmCrossAutoLayout.Core.Model;
 
-namespace MvvmCrossAutoLayout.ViewModels
+namespace MvvmCrossAutoLayout.Core.ViewModels
 {
 	public class ContactDetailViewModel 
 		: MvxViewModel
 	{
-		public MvxCommand<string> TestCommand { 
-			get { return new MvxCommand<string> (Test); } 
-		}
-
-		private bool _Telstra = true;
-
-		public bool Telstra {
-			get { return _Telstra; }
-			set { RaisePropertyChanged (() => Telstra); }
-		}
-
+		//		public MvxCommand<string> TestCommand {
+		//			get { return new MvxCommand<string> (Test); }
+		//		}
 
 
 		private MvxColor _BackgroundColor = MvxColors.Cornsilk;
 
 		public MvxColor BackgroundColor {
 			get { return _BackgroundColor; }
-			set { RaisePropertyChanged (() => BackgroundColor); }
+
+			set {
+				_BackgroundColor = value;
+				RaisePropertyChanged (() => BackgroundColor);
+			}
 		}
 
 		private MvxColor _TextColor = MvxColors.Cyan;
 
 		public MvxColor TextColor {
 			get { return _TextColor; }
-			set { RaisePropertyChanged (() => TextColor); }
-		}
-
-
-		private string _hello = "Hello Tocklet";
-
-		public string Hello { 
-			get { return _hello; }
 			set {
-				_hello = value;
-				RaisePropertyChanged (() => Hello);
+				_TextColor = value;
+				RaisePropertyChanged (() => TextColor);
 			}
 		}
 
-		public void Test (string commandParameter)
-		{
-			// Don't call the individual set methods as the action of firing RaisePropertyChanged for each one
-			// causes some kind of race condition;
-			_hello = commandParameter;
-			_Telstra = !Telstra;
-			RaiseAllPropertiesChanged ();
+
+		private ContactDetail _ContactDetail = new ContactDetail ();
+
+		public ContactDetail ContactDetail { 
+			get { return _ContactDetail; }
+			set {
+				_ContactDetail = value;
+				RaisePropertyChanged (() => ContactDetail);
+			}
 		}
+
+		//		public void Test (string commandParameter)
+		//		{
+		//			// Don't call the individual set methods as the action of firing RaisePropertyChanged for each one
+		//			// causes some kind of race condition;
+		//			_hello = commandParameter;
+		//			RaiseAllPropertiesChanged ();
+		//		}
 	}
 }

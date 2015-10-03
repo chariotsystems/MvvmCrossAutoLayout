@@ -10,7 +10,7 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Foundation;
 using UIKit;
 using AutoLayout.iOS.Helpers;
-using MvvmCrossAutoLayout.ViewModels;
+using MvvmCrossAutoLayout.Core.ViewModels;
 
 
 //https://github.com/benhysell/V.MvvmCross.CustomCell
