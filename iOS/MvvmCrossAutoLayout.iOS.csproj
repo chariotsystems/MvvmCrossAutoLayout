@@ -152,10 +152,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <Compile Include="Views\SplashView.cs" />
-    <Compile Include="Views\TicketView.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="ViewController.cs" />
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="Notifications\LocalNotificationHelper.cs" />
@@ -177,9 +174,6 @@
     <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_directions.png" />
-    <BundleResource Include="Resources\ic_logo.png" />
-    <BundleResource Include="Resources\ic_phone.png" />
     <BundleResource Include="Resources\Alex.jpg" />
   </ItemGroup>
 </Project>

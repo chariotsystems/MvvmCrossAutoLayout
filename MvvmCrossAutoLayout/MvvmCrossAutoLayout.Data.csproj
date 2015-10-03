@@ -30,13 +30,8 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="ViewModels\TicketViewModel.cs" />
-    <Compile Include="Services\Kitten.cs" />
-    <Compile Include="Services\IKittenGenesisService.cs" />
-    <Compile Include="Services\KittenGenesisService.cs" />
     <Compile Include="Model\ContactDetail.cs" />
     <Compile Include="ViewModels\ContactsListViewModel.cs" />
     <Compile Include="Interfaces\IMvxTableRowCommands.cs" />
@@ -45,13 +40,11 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
     <Folder Include="Model\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="ToDo-MvvmCross\_ Core.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cirrious.CrossCore">
