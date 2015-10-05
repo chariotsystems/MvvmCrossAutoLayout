@@ -75,6 +75,9 @@ namespace AutoLayout
 			ComponentsBorder.AddConstraint ("V:|-[Button1(20)]-[ActivityIndicator(60)]-[PageControl(50)]-[ProgressView(50)]-[Slider]-[Switch]-[SegmentedControl]-|");
 			ComponentsBorder.AddConstraint ("V:|-[Button2(20)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[Button1(<=100)]-[Button2(<=100)]-(>=8)-|");
+
+			// TODO: these controls still need some beautification and MVX binding.
+
 			ComponentsBorder.AddConstraint ("H:|-[ActivityIndicator(60)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[PageControl(50)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[ProgressView(50)]-(>=8)-|");
