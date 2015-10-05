@@ -9,6 +9,10 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using MvvmCrossAutoLayout.iOS;
 using AutoLayout.iOS.Helpers;
 
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ */
 namespace AutoLayout
 {
 	public class AutoLayoutContentView : UIView
