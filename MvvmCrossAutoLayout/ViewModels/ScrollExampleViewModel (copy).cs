@@ -2,6 +2,10 @@ using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore.UI;
 using MvvmCrossAutoLayout.Core.Model;
 
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ */
 namespace MvvmCrossAutoLayout.Core.ViewModels
 {
 	public class ScrollExampleViewModel : MvxViewModel

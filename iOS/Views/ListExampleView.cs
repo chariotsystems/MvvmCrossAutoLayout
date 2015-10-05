@@ -13,10 +13,15 @@ using AutoLayout.iOS.Helpers;
 using MvvmCrossAutoLayout.Core.ViewModels;
 
 
-//https://github.com/benhysell/V.MvvmCross.CustomCell
+
 using Cirrious.MvvmCross.Touch.Views;
 
-
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ * 
+ * Using material from https://github.com/benhysell/V.MvvmCross.CustomCell
+ */
 namespace AutoLayout.Views
 {
 

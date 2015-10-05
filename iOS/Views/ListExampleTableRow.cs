@@ -9,6 +9,12 @@ using Foundation;
 using UIKit;
 using MvvmCrossAutoLayout.Core.Model;
 
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ * 
+ * Using material from https://github.com/benhysell/V.MvvmCross.CustomCell
+ */
 namespace AutoLayout.Views
 {
 	[Register ("ListExampleTableRow")]
@@ -39,14 +45,12 @@ namespace AutoLayout.Views
 			Photo.AddConstraint ("V:|[Picture(32)]|");
 			var name = Details.AddLabelLeft ("Name", "Alex Eadie", UIColor.Black, 10);
 			var phone = Details.AddLabelLeft ("Phone", "0456 234 154", UIColor.Blue, 10);
-			//var email = Details.AddLabelLeft ("Email", "alex.eadie@themail.com", UIColor.Blue, 10);
 			Details.AddConstraint ("V:|-(>=2)-[Name]-(>=2)-[Phone]-(>=2)-|");
 
 			ContentView.AddSubviews (ProfileBorder);
 			this.DelayBind (() => {
 				var set = this.CreateBindingSet<ListExampleTableRow, ContactDetail> ();
 				set.Bind (phone).To (vm => vm.PhoneNumber);
-//				set.Bind (email).To (vm => vm.Email);
 				set.Bind (name).To (vm => vm.Name);
 				set.Apply ();
 			});

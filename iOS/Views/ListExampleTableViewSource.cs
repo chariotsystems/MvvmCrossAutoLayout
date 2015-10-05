@@ -9,7 +9,12 @@ using Foundation;
 using MvvmCrossAutoLayout.Core.Interfaces;
 using AutoLayout.Views;
 
-
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ * 
+ * Using material from https://github.com/benhysell/V.MvvmCross.CustomCell
+ */
 namespace AutoLayout.iOS.Helpers
 {
 	public class ListExampleTableViewSource : MvxTableViewSource

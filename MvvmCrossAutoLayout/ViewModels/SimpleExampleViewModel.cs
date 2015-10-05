@@ -3,6 +3,10 @@ using Cirrious.CrossCore.UI;
 using MvvmCrossAutoLayout.Core.Model;
 using System.Windows.Input;
 
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ */
 namespace MvvmCrossAutoLayout.Core.ViewModels
 {
 	public class SimpleExampleViewModel : MvxViewModel

@@ -8,6 +8,10 @@ using Cirrious.MvvmCross.ViewModels;
 using MvvmCrossAutoLayout.Core.Model;
 using MvvmCrossAutoLayout.Core.Interfaces;
 
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ */
 namespace MvvmCrossAutoLayout.Core.ViewModels
 {
 	public class ListExampleViewModel : MvxViewModel, IMvxTableRowCommands

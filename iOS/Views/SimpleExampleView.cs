@@ -9,6 +9,10 @@ using MvvmCrossAutoLayout.Core.ViewModels;
 using ObjCRuntime;
 using MvvmCrossAutoLayout.iOS;
 
+/*
+ * Author: Alex Eadie
+ * https://github.com/chariotsystems/MvvmCrossAutoLayout
+ */
 namespace AutoLayout
 {
 
