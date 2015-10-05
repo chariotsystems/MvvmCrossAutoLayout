@@ -22,7 +22,9 @@ namespace AutoLayout.iOS.Helpers
 			: base (tableView)
 		{
 			this.viewModel = viewModel;
-			tableView.RegisterClassForCellReuse (typeof(ListExampleTableRow), new NSString ("HoursEntryCell"));
+			// Warning this string must line up with the registered string for the row class.
+			tableView.RegisterClassForCellReuse (typeof(ListExampleTableRow), 
+				new NSString ("ListExampleTableRow"));
 		}
 
 
@@ -61,7 +63,9 @@ namespace AutoLayout.iOS.Helpers
 
 		protected override UITableViewCell GetOrCreateCellFor (UITableView tableView, NSIndexPath indexPath, object item)
 		{
-			return (ListExampleTableRow)tableView.DequeueReusableCell ("ContactListTableRow");
+			// Warning this string must line up with the registered string for the row class.
+			return (ListExampleTableRow)
+				tableView.DequeueReusableCell ("ListExampleTableRow");
 		}
 	}
 }

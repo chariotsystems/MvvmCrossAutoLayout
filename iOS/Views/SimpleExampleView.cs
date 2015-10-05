@@ -62,7 +62,7 @@ namespace AutoLayout
 
 		void SetComponents (MvxFluentBindingDescriptionSet<SimpleExampleView, SimpleExampleViewModel> Set, AutoLayoutContentView ComponentsBorder)
 		{
-			ComponentsBorder.AddButton ("Button1", "Scroll Example", UIColor.Green, UIColor.White, 12);
+			var button1 = ComponentsBorder.AddButton ("Button1", "Scroll Example", UIColor.Green, UIColor.White, 12);
 			ComponentsBorder.AddActivityIndicator ("ActivityIndicator", UIColor.Blue);
 			ComponentsBorder.AddPageControl ("PageControl", UIColor.Blue);
 			ComponentsBorder.AddProgressView ("ProgressView", UIColor.Blue);
@@ -81,6 +81,11 @@ namespace AutoLayout
 			ComponentsBorder.AddConstraint ("H:|-[Slider(100)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[Switch]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[SegmentedControl]-(>=8)-|");
+
+
+			Set.Bind (button1).For ("Tap").To (vm => vm.GotoScrollView).WithConversion ("CommandParameter", "scrollView");
+			Set.Bind (button2).For ("Tap").To (vm => vm.GotoListView).WithConversion ("CommandParameter", "listView");
+
 		}
 
 

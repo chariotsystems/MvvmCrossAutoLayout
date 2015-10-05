@@ -38,27 +38,27 @@ namespace AutoLayout.Views
 			var Set = this.CreateBindingSet<ListExampleView, ListExampleViewModel> ();
 			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			var ListPanel = Root.AddContainer ("ListPanel", UIColor.White);
-			var Name = Root.AddLabel ("Name", "List Title", UIColor.Blue, 12);
-			Root.AddConstraint ("V:|-16-[Name]-[ListPanel]-|");
-			Root.AddConstraint ("H:|-40-[Name]-40-|");
+			var OuterLabel = Root.AddLabel ("OuterLabel", "The Beautiful App", UIColor.White, 12);
+			Root.AddConstraint ("V:|-24-[OuterLabel]-[ListPanel]-|");
+			Root.AddConstraint ("H:|-[OuterLabel]");
 			Root.AddConstraint ("H:|-4-[ListPanel]-4-|");
-			var Rabbit = ListPanel.AddLabelLeft ("Rabbit", "Rabbit is here", UIColor.Green, 12);
-//			var hoursTable = ListPanel.AddTableView ("HoursTable");
-//			ListPanel.AddConstraint ("V:|-16-[Rabbit]-[HoursTable]-|");
-//			ListPanel.AddConstraint ("H:|-[HoursTable]-|");
-//			var hoursTableSource = new ContactsListTableViewSource (ViewModel, hoursTable);
-//			var refreshControl = new MvxUIRefreshControl ();
-//			hoursTable.AddSubview (refreshControl);
-//			hoursTable.Source = hoursTableSource;
-//			hoursTable.ReloadData ();
-//
-//			View = Root;
-//
-//			var set = this.CreateBindingSet<ContactsListView, ContactsListViewModel> ();
-//			set.Bind (hoursTableSource).To (vm => vm.Contacts);
-//			set.Bind (refreshControl).For (r => r.RefreshCommand).To (vm => vm.ReloadCommand);
-//			set.Bind (refreshControl).For (r => r.IsRefreshing).To (vm => vm.IsBusy);
-//			set.Apply ();          
+			var InnerLabel = ListPanel.AddLabel ("InnerLabel", "Contacts List", UIColor.Black, 12);
+			var DataTable = ListPanel.AddTableView ("DataTable");
+			ListPanel.AddConstraint ("H:|-[InnerLabel]-(>=8)-|");
+			ListPanel.AddConstraint ("V:|-16-[InnerLabel]-[DataTable]-|");
+			ListPanel.AddConstraint ("H:|-[DataTable]-|");
+			var listExampleTableSource = new ListExampleTableViewSource (ViewModel, DataTable);
+			var refreshControl = new MvxUIRefreshControl ();
+			DataTable.AddSubview (refreshControl);
+			DataTable.Source = listExampleTableSource;
+			DataTable.ReloadData ();
+
+			View = Root;
+
+			Set.Bind (listExampleTableSource).To (vm => vm.Contacts);
+			Set.Bind (refreshControl).For (r => r.RefreshCommand).To (vm => vm.ReloadCommand);
+			Set.Bind (refreshControl).For (r => r.IsRefreshing).To (vm => vm.IsBusy);
+			Set.Apply ();          
 		}
 	}
 }

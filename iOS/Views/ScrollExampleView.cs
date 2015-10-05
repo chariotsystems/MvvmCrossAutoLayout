@@ -32,6 +32,11 @@ namespace AutoLayout
 
 			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			var ScrollView = Root.AddScrollView ("ScrollView", UIColor.DarkGray);
+			var button1 = ScrollView.AddButton ("Button1", "Simple Example", UIColor.Green, UIColor.White, 6);
+			ScrollView.AddConstraint ("V:|[Button1]-(>=8)-|");
+			ScrollView.AddConstraint ("H:|-4-[Button1]-(>=8)-|");
+			Set.Bind (button1).For ("Tap").To (vm => vm.GotoSimpleView).WithConversion ("CommandParameter", "simpleView");
+
 
 			var ContactBorder1 = ScrollView.AddContainer ("ContactBorder1", UIColor.White);
 			var ContactBorder2 = ScrollView.AddContainer ("ContactBorder2", UIColor.White);
