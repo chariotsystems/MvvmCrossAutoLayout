@@ -45,10 +45,9 @@ namespace AutoLayout.Views
 			ContentView.AddSubviews (ProfileBorder);
 			this.DelayBind (() => {
 				var set = this.CreateBindingSet<ListExampleTableRow, ContactDetail> ();
-				// TODO: text color, background color and visibility binding.
-				//set.Bind (phone).To (vm => vm.PhoneNumber);
-				//set.Bind (email).To (vm => vm.Email);
-				//set.Bind (name).To (vm => vm.Name);
+				set.Bind (phone).To (vm => vm.PhoneNumber);
+//				set.Bind (email).To (vm => vm.Email);
+				set.Bind (name).To (vm => vm.Name);
 				set.Apply ();
 			});
 
