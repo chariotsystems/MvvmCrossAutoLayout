@@ -19,7 +19,6 @@ namespace AutoLayout
 		{
 			base.ViewDidLoad ();
 			View = BuildView ();
-			//LocalNotificationHelper.SendLocalNotification ();
 		}
 
 
@@ -63,7 +62,7 @@ namespace AutoLayout
 
 		void SetComponents (MvxFluentBindingDescriptionSet<SimpleExampleView, SimpleExampleViewModel> Set, AutoLayoutContentView ComponentsBorder)
 		{
-			ComponentsBorder.AddButton ("Button1", "Button1", UIColor.Green, UIColor.White, 12);
+			ComponentsBorder.AddButton ("Button1", "Scroll Example", UIColor.Green, UIColor.White, 12);
 			ComponentsBorder.AddActivityIndicator ("ActivityIndicator", UIColor.Blue);
 			ComponentsBorder.AddPageControl ("PageControl", UIColor.Blue);
 			ComponentsBorder.AddProgressView ("ProgressView", UIColor.Blue);
@@ -72,7 +71,7 @@ namespace AutoLayout
 			ComponentsBorder.AddSegmentedControl ("SegmentedControl", UIColor.Blue);
 			// We can add in other UIViews that don't have their own bespoke Add methods.
 			var button2 = (UIButton)ComponentsBorder.AddView ("Button2", UIButton.FromType (UIButtonType.RoundedRect));
-			button2.SetTitle ("Button2", UIControlState.Normal);
+			button2.SetTitle ("List Example", UIControlState.Normal);
 			ComponentsBorder.AddConstraint ("V:|-[Button1(20)]-[ActivityIndicator(60)]-[PageControl(50)]-[ProgressView(50)]-[Slider]-[Switch]-[SegmentedControl]-|");
 			ComponentsBorder.AddConstraint ("V:|-[Button2(20)]-(>=8)-|");
 			ComponentsBorder.AddConstraint ("H:|-[Button1(<=100)]-[Button2(<=100)]-(>=8)-|");

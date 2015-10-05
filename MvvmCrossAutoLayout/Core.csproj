@@ -36,6 +36,7 @@
     <Compile Include="Interfaces\IMvxTableRowCommands.cs" />
     <Compile Include="ViewModels\ListExampleViewModel.cs" />
     <Compile Include="ViewModels\SimpleExampleViewModel.cs" />
+    <Compile Include="ViewModels\ScrollExampleViewModel %28copy%29.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

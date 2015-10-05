@@ -28,16 +28,25 @@ namespace AutoLayout
 
 		private UIView BuildView ()
 		{
+			var Set = this.CreateBindingSet<ScrollExampleView, ScrollExampleViewModel> ();
+
 			var Root = AutoLayoutContentView.CreateRoot ("Root", UIColor.DarkGray, "Helvetica-Bold");
 			var ScrollView = Root.AddScrollView ("ScrollView", UIColor.DarkGray);
 
-			var ContactBorder = ScrollView.AddContainer ("ContactBorder", UIColor.White);
-			var PremisesBorder = ScrollView.AddContainer ("PremisesBorder", UIColor.White);
-			ScrollView.AddConstraint ("V:|-16-[ContactBorder]-300-[PremisesBorder]-(>=4)-|");
-			ScrollView.AddConstraint ("H:|-4-[ContactBorder]-4-|");
-			ScrollView.AddConstraint ("H:|-4-[PremisesBorder]-4-|");
+			var ContactBorder1 = ScrollView.AddContainer ("ContactBorder1", UIColor.White);
+			var ContactBorder2 = ScrollView.AddContainer ("ContactBorder2", UIColor.White);
+			var ContactBorder3 = ScrollView.AddContainer ("ContactBorder3", UIColor.White);
+			var ContactBorder4 = ScrollView.AddContainer ("ContactBorder4", UIColor.White);
+			ScrollView.AddConstraint ("V:|-16-[ContactBorder1]-[ContactBorder2]-[ContactBorder3]-[ContactBorder4]-(>=100)-|");
+			ScrollView.AddConstraint ("H:|-4-[ContactBorder1]-4-|");
+			ScrollView.AddConstraint ("H:|-4-[ContactBorder2]-4-|");
+			ScrollView.AddConstraint ("H:|-4-[ContactBorder3]-4-|");
+			ScrollView.AddConstraint ("H:|-4-[ContactBorder4]-4-|");
 
-			SetCustomerAndContact (ContactBorder);
+			SetCustomerAndContact (ContactBorder1);
+			SetCustomerAndContact (ContactBorder2);
+			SetCustomerAndContact (ContactBorder3);
+			SetCustomerAndContact (ContactBorder4);
 
 			return Root;
 		}
@@ -45,32 +54,32 @@ namespace AutoLayout
 		void SetCustomerAndContact (AutoLayoutContentView ContactBorder)
 		{
 			var Customer = ContactBorder.AddContainer ("Customer", UIColor.White);
-			var SiteContact = ContactBorder.AddContainer ("SiteContact", UIColor.White);
-			ContactBorder.AddConstraint ("V:|-[Customer]-25-[SiteContact]|");
+			var Contact = ContactBorder.AddContainer ("Contact", UIColor.White);
+			ContactBorder.AddConstraint ("V:|-[Customer]-25-[Contact]|");
 			ContactBorder.AddConstraint ("H:|-[Customer]-(>=8)-|");
-			ContactBorder.AddConstraint ("H:|-[SiteContact]-(>=8)-|");
+			ContactBorder.AddConstraint ("H:|-[Contact]-(>=8)-|");
 			SetCustomer (Customer);
-			SetContact (SiteContact);
+			SetContact (Contact);
 		}
 
 		void SetCustomer (AutoLayoutContentView Customer)
 		{
-			Customer.AddLabel ("CustomerLabel", "CUSTOMER", UIColor.LightGray/*TelstraGreyL6*/, LabelTextSize);
+			Customer.AddLabel ("CustomerLabel", "CUSTOMER", UIColor.LightGray, LabelTextSize);
 			var name = Customer.AddLabel ("CustomerName", "Alex Eadie", UIColor.Black, DataTextSize);
 			Customer.AddConstraint ("V:|-18-[CustomerLabel]-7-[CustomerName]|");
 			Customer.AddConstraint ("H:|-19-[CustomerLabel]-(>=8)-|");
 			Customer.AddConstraint ("H:|-19-[CustomerName]-(>=8)-|");
 		}
 
-		void SetContact (AutoLayoutContentView SiteContact)
+		void SetContact (AutoLayoutContentView Contact)
 		{
-			SiteContact.AddLabel ("SiteContactLabel", "SITE CONTACT", UIColor.LightGray/*TelstraGreyL6*/, LabelTextSize);
-			var name = SiteContact.AddLabel ("SiteContactName", "Natasha Eadie", UIColor.Black, DataTextSize);
-			var phone = SiteContact.AddLabel ("SiteContactPhone", "0412 123 456", UIColor.Black, DataTextSize);
-			SiteContact.AddConstraint ("V:|[SiteContactLabel]-3-[SiteContactName]-3-[SiteContactPhone]-18-|");
-			SiteContact.AddConstraint ("V:|-20-[SitePhoneImage(23)]-(>=8)-|");
-			SiteContact.AddConstraint ("H:|-19-[SiteContactLabel]-(>=8)-|");
-			SiteContact.AddConstraint ("H:|-19-[SiteContactPhone]-(>=8)-|");
+			Contact.AddLabel ("ContactLabel", "CONTACT", UIColor.LightGray, LabelTextSize);
+			var name = Contact.AddLabel ("ContactName", "Natasha Eadie", UIColor.Black, DataTextSize);
+			var phone = Contact.AddLabel ("ContactPhone", "0412 123 456", UIColor.Black, DataTextSize);
+			Contact.AddConstraint ("V:|[ContactLabel]-3-[ContactName]-3-[ContactPhone]-18-|");
+			Contact.AddConstraint ("H:|-19-[ContactLabel]-(>=8)-|");
+			Contact.AddConstraint ("H:|-19-[ContactName]-(>=8)-|");
+			Contact.AddConstraint ("H:|-19-[ContactPhone]-(>=8)-|");
 		}
 
 

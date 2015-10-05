@@ -11,7 +11,7 @@ namespace MvvmCrossAutoLayout.Data
                 .AsInterfaces ()
                 .RegisterAsLazySingleton ();
 				
-			RegisterAppStart<MvvmCrossAutoLayout.Core.ViewModels.SimpleExampleViewModel> ();
+			RegisterAppStart<MvvmCrossAutoLayout.Core.ViewModels.ScrollExampleViewModel> ();
 		}
 	}
 }
